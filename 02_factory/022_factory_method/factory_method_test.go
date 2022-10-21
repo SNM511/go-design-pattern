@@ -1,6 +1,7 @@
 package factory
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -32,4 +33,20 @@ func TestNewIRuleConfigParserFactory(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleOperatorFactory() {
+	mathOp := NewOperatorFactory("plus").Create()
+	mathOp.SetOperandB(3)
+	mathOp.SetOperandA(2)
+	fmt.Printf("Plus operation reuslt: %d\n", mathOp.ComputeResult())
+
+	mathOp = NewOperatorFactory("mul").Create()
+	mathOp.SetOperandB(3)
+	mathOp.SetOperandA(2)
+	fmt.Printf("Multiple operation reuslt: %d\n", mathOp.ComputeResult())
+
+	// Output:
+	// Plus operation reuslt: 5
+	// Multiple operation reuslt: 6
 }

@@ -44,3 +44,23 @@ func Test_jsonConfigParserFactory_CreateSystemParser(t *testing.T) {
 		})
 	}
 }
+
+func ExampleAbstractFactory() {
+	factory := NewAbstractFactory("HuaWei")
+	tv := factory.CreateTelevision()
+	air := factory.CreateAirConditioner()
+	tv.Watch()
+	air.SetTemperature(25)
+
+	factory = NewAbstractFactory("Mi")
+	tv = factory.CreateTelevision()
+	air = factory.CreateAirConditioner()
+	tv.Watch()
+	air.SetTemperature(26)
+
+	// Output:
+	// Watch HuaWei TV
+	// HuaWei AirConditioner set temperature to 25 ℃
+	// Watch Mi TV
+	// Mi AirConditioner set temperature to 26 ℃
+}

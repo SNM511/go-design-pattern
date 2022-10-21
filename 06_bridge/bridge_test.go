@@ -7,9 +7,6 @@ import (
 )
 
 func TestErrorNotification_Notify(t *testing.T) {
-	sender := NewEmailMsgSender([]string{"test@test.com"})
-	n := NewErrorNotification(sender)
-	err := n.Notify("test msg")
-
-	assert.Nil(t, err)
+	assert.Nil(t, NewErrorNotification(NewEmailMsgSender([]string{"test@test.com"})).Notify("panic happened!"))
+	assert.Nil(t, NewWarnNotification(NewPhoneMsgSender([]string{"123456"})).Notify("something went wrong."))
 }

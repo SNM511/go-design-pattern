@@ -5,6 +5,11 @@ import (
 	"time"
 )
 
+/*
+	业务类User，实现IUser；
+	引入User代理类UserProxy，在User业务行为之外进行其他处理；
+*/
+
 // IUser IUser
 type IUser interface {
 	Login(username, password string) error
@@ -26,7 +31,6 @@ type UserProxy struct {
 	user *User
 }
 
-// NewUserProxy NewUserProxy
 func NewUserProxy(user *User) *UserProxy {
 	return &UserProxy{
 		user: user,
